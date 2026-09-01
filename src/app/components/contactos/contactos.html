@@ -5,15 +5,24 @@
         </a>
     </div>
 </section>
-<section>
+<section class="container d-flex flex-column gap-5">
     <div class="container d-flex gap-5">
         @for(contacto of contactos; track contacto){
             <div class="card w-30">
-                <div class="card-header">
+                <div class="card-header d-flex">
                     <h4>{{contacto.nombre}} {{contacto.apellido}}</h4>
+                    <a routerLink="/cliente/editar/{{contacto.id}}" class="btn btn secundaty">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
                 </div>
-                <div class="card-body text-center">{{contacto.telefono}}</div>
-            </div>       
+                <div class="card-body text-center p-1">{{contacto.telefono}}</div>
+            </div>
         }
+    </div>
+    <div class="card bg-info col-md-3">
+        <div class="card-body d-flex gap-2 justify-content-center align-items-center ">
+            <h3 class="m-0">Contactos:</h3>
+            <p class="display-6 m-0">{{contactos?.length}}</p>
+        </div>
     </div>
 </section>
