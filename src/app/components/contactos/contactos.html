@@ -1,1 +1,19 @@
-<p>contactos works!</p>
+<section class="actions py-4 mb-4">
+    <div class="container w-30">
+        <a href="#" class="btn btn-primary w-30" data-bs-toggle="modal" data-bs-target="#agregarClientesModal">
+            <i class="bt bi-plus-circle"></i> Agregar Cliente
+        </a>
+    </div>
+</section>
+<section>
+    <div class="container d-flex gap-5">
+        @for(contacto of contactos; track contacto){
+            <div class="card w-30">
+                <div class="card-header">
+                    <h4>{{contacto.nombre}} {{contacto.apellido}}</h4>
+                </div>
+                <div class="card-body text-center">{{contacto.telefono}}</div>
+            </div>       
+        }
+    </div>
+</section>
