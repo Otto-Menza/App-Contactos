@@ -1,17 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Contacto } from '../../modelo/contacto.modelo';
 import { ContactoService } from '../../servicios/contacto-service';
 import { RouterLink, RouterModule } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms'
 
 @Component({
   selector: 'app-contactos',
-  imports: [ RouterLink ],
+  imports: [ RouterLink, FormsModule ],
   templateUrl: './contactos.html',
   styleUrl: './contactos.css',
 })
 export class Contactos {
 
   contactos: Contacto[] | null = null;
+  contacto: Contacto = {
+    nombre:'',
+    apellido:'',
+    email:'',
+    telefono: undefined
+  };
+
+  @ViewChild('botonCerrar') botonCerrar!: ElementRef;
 
   constructor(private contactoServicio: ContactoService){}
 
@@ -20,5 +29,18 @@ export class Contactos {
     });
   }
 
+  agregar(clienteForm: NgForm) {
+    const {value, valid} = clienteForm;
+    if(valid){
+      // logica para guardar cliente
+      this.contactoServicio.agregarContacto(value)
+      //limpiar formulario
+      clienteForm.resetForm();
+      this.cerrarModal();
+    }   
+  }
+  private cerrarModal(){
+    this.botonCerrar.nativeElement.click();
+  };
 
 }

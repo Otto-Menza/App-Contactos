@@ -1,7 +1,7 @@
 <section class="actions py-4 mb-4">
     <div class="container w-30">
         <a href="#" class="btn btn-primary w-30" data-bs-toggle="modal" data-bs-target="#agregarContactoModal">
-            <i class="bt bi-plus-circle"></i> Agregar Cliente
+            <i class="bt bi-plus-circle"></i> Agregar Contacto
         </a>
     </div>
 </section>
@@ -32,7 +32,7 @@
         <div class="modal-content">
             <div class="modal-header bg-info text-white">
                 <h5 class="modal-tittle">Agregar Contacto</h5>
-                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" #botonCerrar></button>
             </div>
             <!-- Formulario: -->
              <form #contactoForm="ngForm" (ngSubmit)="agregar(contactoForm)">
