@@ -11,7 +11,7 @@ import { FormsModule, NgForm } from '@angular/forms'
   styleUrl: './contactos.css',
 })
 export class Contactos {
-
+  
   contactos: Contacto[] | null = null;
   contacto: Contacto = {
     nombre:'',
@@ -29,13 +29,13 @@ export class Contactos {
     });
   }
 
-  agregar(clienteForm: NgForm) {
-    const {value, valid} = clienteForm;
+  agregar(contactoForm: NgForm) {
+    const {value, valid} = contactoForm;
     if(valid){
-      // logica para guardar cliente
+      // logica para agregar contacto
       this.contactoServicio.agregarContacto(value)
       //limpiar formulario
-      clienteForm.resetForm();
+      contactoForm.resetForm();
       this.cerrarModal();
     }   
   }

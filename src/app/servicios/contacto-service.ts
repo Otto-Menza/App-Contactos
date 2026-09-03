@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Contacto } from '../modelo/contacto.modelo';
 import { collection, collectionData, Firestore, orderBy, query, CollectionReference, docData } from '@angular/fire/firestore';
-import { addDoc, doc } from 'firebase/firestore';
+import { addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -29,4 +29,14 @@ export class ContactoService {
     const contactoRefDoc = doc(this.firestore, `contactos/${id}`);
     return docData(contactoRefDoc, {idField: 'id'}) as Observable<Contacto>;
   }
+
+  modificarContacto(contacto: Contacto){
+    const contactoDoc = doc(this.firestore, `contactos/${contacto.id}`);
+    return updateDoc(contactoDoc, {...contacto});
+  }
+  eliminarContacto(contacto: Contacto){
+    const contactoDoc = doc(this.firestore, `contactos/${contacto.id}`);
+    return deleteDoc(contactoDoc);    
+  }
+
 }
